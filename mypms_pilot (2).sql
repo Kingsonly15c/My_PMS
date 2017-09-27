@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 27, 2017 at 05:39 AM
+-- Generation Time: Sep 27, 2017 at 12:45 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.0.21
 
@@ -47,7 +47,11 @@ INSERT INTO `address` (`address_id`, `entity_id`, `address`, `state_id`, `countr
 (6, 412313, 'Mabushi', 1, 156),
 (7, 503774, 'Abuja', 1, 156),
 (8, 9649, 'Dawaki Abuja', 1, 156),
-(9, 4580, 'Garki', 1, 156);
+(9, 4580, 'Garki', 1, 156),
+(19, 4013, 'Mabushi', 1, 156),
+(20, 6371, 'Dawaki Abuja', 1, 156),
+(21, 8764, 'Minna', 1, 156),
+(22, 1116, 'Lagos', 1, 156);
 
 -- --------------------------------------------------------
 
@@ -58,20 +62,27 @@ INSERT INTO `address` (`address_id`, `entity_id`, `address`, `state_id`, `countr
 CREATE TABLE `admin` (
   `admin_id` int(255) NOT NULL,
   `entity_id` int(255) NOT NULL,
+  `firstname` varchar(100) NOT NULL,
+  `lastname` varchar(100) NOT NULL,
   `username` varchar(8) NOT NULL,
   `password` varchar(8) NOT NULL,
   `department` varchar(100) NOT NULL,
   `access_level` int(5) NOT NULL,
-  `photo` varchar(100) NOT NULL,
-  `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `photo` varchar(100) NOT NULL DEFAULT 'profile.png',
+  `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_by_admin` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`admin_id`, `entity_id`, `username`, `password`, `department`, `access_level`, `photo`, `datetime`) VALUES
-(1, 1, 'DAHLIA', 'DAHLIA', 'SUPER ADMIN', 3, 'profile.png', '2017-09-26 02:00:10');
+INSERT INTO `admin` (`admin_id`, `entity_id`, `firstname`, `lastname`, `username`, `password`, `department`, `access_level`, `photo`, `datetime`, `created_by_admin`) VALUES
+(1, 1, 'Ese', 'Akhaine', 'DAHLIA', 'DAHLIA', 'SUPER ADMIN', 3, 'profile.png', '2017-09-27 09:27:06', 0),
+(11, 4013, 'Kingsley', 'Achumie', 'KINGS', 'KINGS', 'GMSM', 3, 'profile.png', '2017-09-27 10:35:26', 1),
+(12, 6371, 'Yakub', 'Ibrahim', 'YAKUB', 'YAKUB', 'POSM', 3, 'profile.png', '2017-09-27 10:36:17', 1),
+(13, 8764, 'Bunmi', 'Obebe', 'BUN', 'BUN', 'SCM', 2, 'profile.png', '2017-09-27 10:36:57', 1),
+(14, 1116, 'Joshua', 'Al-Hassan', 'AJ', 'AJ', 'AM', 3, 'profile.png', '2017-09-27 10:37:50', 1);
 
 -- --------------------------------------------------------
 
@@ -349,7 +360,11 @@ CREATE TABLE `email` (
 INSERT INTO `email` (`email_id`, `entity_id`, `email`) VALUES
 (1, 1, 'ese@gmail.com'),
 (4, 398261959, 'esejoyakhaine@gmail.com'),
-(5, 2147483647, 'esejoyakhaine@gmail.com');
+(5, 2147483647, 'esejoyakhaine@gmail.com'),
+(15, 4013, 'kingsley@gmail.com'),
+(16, 6371, 'yakub@gmail.com'),
+(17, 8764, 'bunmi@gmail.com'),
+(18, 1116, 'josh12@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -368,7 +383,13 @@ CREATE TABLE `entity` (
 
 INSERT INTO `entity` (`entity_id`, `entity`) VALUES
 (1, 'admin'),
+(1045, 'admin'),
+(1116, 'admin'),
+(2139, 'admin'),
+(4013, 'admin'),
 (4580, 'guest'),
+(6371, 'admin'),
+(8764, 'admin'),
 (9649, 'guest'),
 (412313, 'guest'),
 (439040, 'guest'),
@@ -464,7 +485,11 @@ CREATE TABLE `phone` (
 INSERT INTO `phone` (`phone_id`, `entity_id`, `phone`, `country_id`) VALUES
 (2, 1, '0902752781', 156),
 (6, 398261959, '8089987678', 156),
-(7, 2147483647, '8089987678', 156);
+(7, 2147483647, '8089987678', 156),
+(17, 4013, '0907654456', 156),
+(18, 6371, '7051365997', 156),
+(19, 8764, '0907654456', 156),
+(20, 1116, '8089987678', 156);
 
 -- --------------------------------------------------------
 
@@ -556,7 +581,7 @@ CREATE TABLE `rooms` (
 
 INSERT INTO `rooms` (`room_id`, `room_number`, `room_tariff`, `room_type`, `status`) VALUES
 (1, 1, 9000, 'Classic', 'occupied'),
-(2, 2, 9000, 'Classic', 'occupied'),
+(2, 2, 9000, 'Classic', 'vacant-but-dirty'),
 (3, 3, 9000, 'Classic', 'unoccupied'),
 (4, 4, 9000, 'Classic', 'occupied'),
 (5, 5, 9000, 'Classic', 'unoccupied'),
@@ -849,7 +874,7 @@ ALTER TABLE `address`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`admin_id`),
-  ADD KEY `entity` (`entity_id`);
+  ADD KEY `admin_entity` (`entity_id`);
 
 --
 -- Indexes for table `countries`
@@ -951,12 +976,12 @@ ALTER TABLE `states`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `address_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `address_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `admin_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `countries`
 --
@@ -966,7 +991,7 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT for table `email`
 --
 ALTER TABLE `email`
-  MODIFY `email_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `email_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `entity`
 --
@@ -991,7 +1016,7 @@ ALTER TABLE `names`
 -- AUTO_INCREMENT for table `phone`
 --
 ALTER TABLE `phone`
-  MODIFY `phone_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `phone_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `product_order`
 --
@@ -1036,7 +1061,7 @@ ALTER TABLE `address`
 -- Constraints for table `admin`
 --
 ALTER TABLE `admin`
-  ADD CONSTRAINT `entity` FOREIGN KEY (`entity_id`) REFERENCES `entity` (`entity_id`);
+  ADD CONSTRAINT `admin_entity` FOREIGN KEY (`entity_id`) REFERENCES `entity` (`entity_id`);
 
 --
 -- Constraints for table `email`
