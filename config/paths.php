@@ -1,3 +1,3 @@
 <?php
-define ('URL', 'http://localhost/mypms-pilot/');
+define ('URL', 'http://localhost/mypms_pilot/');
 ?>

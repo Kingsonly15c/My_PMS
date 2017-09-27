@@ -137,50 +137,58 @@ if(!isset($_GET['url'])){
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <?php if ($department == 'GMSM') {
               echo '<div class="menu_section">
-                <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home"></i> Dashboard <span class="fa fa-dashboard"></span></a>
-                  </li>
-                  <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-                  </li>
-                  <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-                  </li>
-                  <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-                  </li>
+                <ul class="nav side-menu"> 
+                <li class="($_GET[url] == "admin_dashboard") ? "activex" : """><a href="'.URL.'admin_dashboard"><i class="fa fa-dashboard"></i> Dashboard </a>
+                  </li>         
+                  <li class="($_GET[url] == "guests") ? "activex" : """><a href="'.URL.'guests"><i class="fa fa-users"></i> Guests </a>
+                  </li>  
+                    <li class="($_GET[url] == "reservations") ? "activex" : """><a href="'.URL.'reservations"><i class="fa fa-calendar"></i> Reservations </a>
+                  </li>      
+                  <li class="($_GET[url] == "rooms") ? "activex" : """><a href="'.URL.'rooms"><i class="fa fa-building"></i> Rooms </a>
+                  </li> 
                 </ul>
               </div>';
             } elseif ($department == 'POSM') {
               echo '<div class="menu_section">
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="e_commerce.html">E-commerce</a></li>
-                      <li><a href="projects.html">Projects</a></li>
-                      <li><a href="project_detail.html">Project Detail</a></li>
-                      <li><a href="contacts.html">Contacts</a></li>
-                      <li><a href="profile.html">Profile</a></li>
-                    </ul>
-                  </li>                 
+                   <li class="($_GET[url] == "admin_dashboard") ? "activex" : """><a href="'.URL.'admin_dashboard"><i class="fa fa-dashboard"></i> Dashboard </a>
+                  </li>   
+                    <li class="($_GET[url] == "point_of_sales") ? "activex" : """><a href="'.URL.'point_of_sales"><i class="fa fa-cutlery"></i> Point Of Sales </a>
+                  </li>                
                 </ul>
               </div>';
             } elseif ($department == 'SCM') {
               echo '<div class="menu_section">
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
-                  </li>                 
+                   <li class="($_GET[url] == "admin_dashboard") ? "activex" : """><a href="'.URL.'admin_dashboard"><i class="fa fa-dashboard"></i> Dashboard </a>
+                  </li>     
+                       
+                  <li class="($_GET[url] == "ledgers") ? "activex" : """><a href="'.URL.'ledgers"><i class="fa fa-folder-open"></i> Ledgers </a>
+                  </li> 
+                    <li class="($_GET[url] == "records") ? "activex" : """><a href="'.URL.'records"><i class="fa fa-book"></i> Records </a>
+                  </li>               
+                  <li class="($_GET[url] == "reports") ? "activex" : """><a href="'.URL.'reports"><i class="fa fa-bar-chart"></i> Reports </a>
+                  </li>           
                 </ul>
               </div>';
             } elseif ($department == 'AM') {
               echo '<div class="menu_section">
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
-                  </li>                 
+                   <li class="($_GET[url] == "admin_dashboard") ? "activex" : """><a href="'.URL.'admin_dashboard"><i class="fa fa-dashboard"></i> Dashboard </a>
+                  </li>          
+                  <li class="($_GET[url] == "records") ? "activex" : """><a href="'.URL.'records"><i class="fa fa-book"></i> Records </a>
+                  </li>               
+                  <li class="($_GET[url] == "reports") ? "activex" : """><a href="'.URL.'reports"><i class="fa fa-bar-chart"></i> Reports </a>
+                  </li>              
                 </ul>
               </div>';
             } elseif ($department == 'PSIM') {
               echo '<div class="menu_section">
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
-                  </li>                 
+                   <li class="($_GET[url] == "admin_dashboard") ? "activex" : """><a href="'.URL.'admin_dashboard"><i class="fa fa-dashboard"></i> Dashboard </a>
+                  </li>               
+                  <li class="($_GET[url] == "admin") ? "activex" : """><a href="'.URL.'users"><i class="fa fa-users"></i> Users </a>
+                  </li>         
                 </ul>
               </div>';
             } elseif ($department == 'SUPER ADMIN') {

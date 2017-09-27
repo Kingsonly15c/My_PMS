@@ -8,7 +8,7 @@
                 <div class="x_panel">
                   <div class="x_title">
                   <h3><i class="fa fa-users"></i> 
-    Records</h3>
+    Reports</h3>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
